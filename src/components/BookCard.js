@@ -1,6 +1,8 @@
-import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBookOpen, faBookmark, faStar, faBook } from '@fortawesome/free-solid-svg-icons';
 
 function BookCard({ bookInformation }) {
 
@@ -23,10 +25,18 @@ function BookCard({ bookInformation }) {
                 <div className="text-gray-700 text-base">{description}</div>
             </div>
             <div className="px-6 py-4 mt-6 flex justify-between">
-                <div>{wantToRead}</div>
-                <div>{averageRating.toFixed(1)}</div>
-                <div>{haveRead}</div>
-                <div>{currentlyReading}</div>
+                <div>
+                    <FontAwesomeIcon icon={faStar} size="md" /><span className='ml-2'>{averageRating.toFixed(1)}</span>
+                </div>
+                <div>
+                    <FontAwesomeIcon icon={faBookmark} size="md" /><span className='ml-2'>{wantToRead}</span>
+                </div>
+                <div>
+                    <FontAwesomeIcon icon={faBook} size="md" /><span className='ml-2'>{haveRead}</span>
+                </div>
+                <div>
+                    <FontAwesomeIcon icon={faBookOpen} size="md" /><span className='ml-2'>{currentlyReading}</span>
+                </div>
             </div>
             <div className="px-6 pt-4 pb-2">
                 <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{`#${genre}`}</span>
