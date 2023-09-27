@@ -26,16 +26,16 @@ function BookCard({ bookInformation }) {
             </div>
             <div className="px-6 py-4 mt-8 flex justify-between">
                 <div>
-                    <FontAwesomeIcon icon={faStar} size="md" /><span className='ml-2'>{averageRating.toFixed(1)}</span>
+                    <FontAwesomeIcon icon={faStar} size="sm" /><span className='ml-2'>{averageRating.toFixed(1)}</span>
                 </div>
                 <div>
-                    <FontAwesomeIcon icon={faBookmark} size="md" /><span className='ml-2'>{wantToRead}</span>
+                    <FontAwesomeIcon icon={faBookmark} size="sm" /><span className='ml-2'>{wantToRead}</span>
                 </div>
                 <div>
-                    <FontAwesomeIcon icon={faBook} size="md" /><span className='ml-2'>{haveRead}</span>
+                    <FontAwesomeIcon icon={faBook} size="sm" /><span className='ml-2'>{haveRead}</span>
                 </div>
                 <div>
-                    <FontAwesomeIcon icon={faBookOpen} size="md" /><span className='ml-2'>{currentlyReading}</span>
+                    <FontAwesomeIcon icon={faBookOpen} size="sm" /><span className='ml-2'>{currentlyReading}</span>
                 </div>
             </div>
             <div className="px-6 pt-4 pb-2">

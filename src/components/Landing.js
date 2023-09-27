@@ -30,8 +30,7 @@ const Landing = () => {
             </div>
             <div className="mt-10 flex flex-wrap gap-10">
             {books.map(book => (
-                book.id === undefined ?
-                (book.id = uuidv4()) :
+                book.id !== undefined &&
                 (<div key={book.id}>
                     <BookCard bookInformation={book} />
                 </div>)
