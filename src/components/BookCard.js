@@ -6,11 +6,11 @@ import { faBookOpen, faBookmark, faStar, faBook } from '@fortawesome/free-solid-
 
 function BookCard({ bookInformation }) {
 
-    const { name, genre, coverUrl, description, averageRating, haveRead, currentlyReading, wantToRead } = bookInformation;
+    const { id, name, genre, coverUrl, description, averageRating, haveRead, currentlyReading, wantToRead } = bookInformation;
 
     return (
     <section>
-        <Link href="#">
+        <Link href={`/book/${id}`}>
             <div className="max-w-sm rounded overflow-hidden w-full shadow-lg">
                 <Image
                     src={coverUrl}
@@ -24,7 +24,7 @@ function BookCard({ bookInformation }) {
                 <div className="font-bold text-xl mb-2 capitalize">{name}</div>
                 <div className="text-gray-700 text-base">{description}</div>
             </div>
-            <div className="px-6 py-4 mt-6 flex justify-between">
+            <div className="px-6 py-4 mt-8 flex justify-between">
                 <div>
                     <FontAwesomeIcon icon={faStar} size="md" /><span className='ml-2'>{averageRating.toFixed(1)}</span>
                 </div>

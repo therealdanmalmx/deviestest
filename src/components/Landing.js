@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import BookCard from "@/components/BookCard"
 import FilterBar from "./FilterBar";
-import deviesFetch from "@/api/axios";
+import {deviesFetch} from "@/api/axios";
 import { v4 as uuidv4 } from 'uuid';
 
 const Landing = () => {
