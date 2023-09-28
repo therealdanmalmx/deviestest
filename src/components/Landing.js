@@ -23,11 +23,7 @@ const Landing = () => {
 
     return (
         <section>
-            <div className="text-4xl font-bold text-center">Devies Reads</div>
-            <div className="text-2xl font-bold text-center tracking-wider">Because dev's read</div>
-            <div>
-              <FilterBar />
-            </div>
+            <FilterBar books={books} />
             <div className="mt-10 flex flex-wrap gap-10">
             {books.map(book => (
                 book.id !== undefined &&
