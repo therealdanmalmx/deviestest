@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 const Landing = () => {
 
     const [books, setBooks] = useState([]);
+    const [searchQuery, setSearchQuery] = useState("");
     const [filteredRanking, setFilteredRanking] = useState([]); // new state for filtered books
 
     useEffect( () => {
@@ -41,6 +42,9 @@ const Landing = () => {
         setBooks(sortedBooks);
     };
 
+    const sortByName = (query) => {
+        setSearchQuery(query);
+    };
     const handleSort = (sortType) => {
         switch(sortType) {
             case 'mostRead':
@@ -65,9 +69,9 @@ const Landing = () => {
 
     return (
         <section>
-            <FilterBar onSort={handleSort} />
+            <FilterBar onSort={handleSort} onSearch={sortByName} books={books}/>
             <div className="mt-10 flex flex-wrap gap-10">
-            {books.map(book => (
+            {books.filter(book => book.name.toLowerCase().includes(searchQuery.toLowerCase())).map(book => (
                 book.id !== undefined &&
                 (<div key={book.id}>
                     <BookCard bookInformation={book} />

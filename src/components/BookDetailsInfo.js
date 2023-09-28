@@ -1,10 +1,14 @@
+import { useState, useEffect, useContext } from 'react';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookOpen, faBookmark, faStar, faBook } from '@fortawesome/free-solid-svg-icons';
+import { BookContext } from '@/context/Contexts';
 
 const BookDetailsInfo = ({ book }) => {
+
     const { name, genre, coverUrl, description, averageRating, haveRead, currentlyReading, wantToRead } = book;
-    const isLoggedIn = true;
+    // const {isLoggedIn, checkLogin} = useContext(BookContext);
+    const isLoggedIn = true
 
   return (
     <div className="flex items-center w-screen justify-center h-screen">
