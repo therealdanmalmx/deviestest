@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 const Landing = () => {
 
     const [books, setBooks] = useState([]);
+    const [filteredRanking, setFilteredRanking] = useState([]); // new state for filtered books
 
     useEffect( () => {
       const fetchBooks = async () => {
@@ -21,9 +22,50 @@ const Landing = () => {
       fetchBooks();
     }, []);
 
+    const sortByMostRead = () => {
+      const sortedBooks = [...books].sort((a, b) => b.haveRead - a.haveRead);
+      setBooks(sortedBooks);
+    };
+
+    const sortByMostWanted = () => {
+        const sortedBooks = [...books].sort((a, b) => b.wantToRead - a.wantToRead);
+        setBooks(sortedBooks);
+    };
+
+    const sortByCurrentlyReading = () => {
+        const sortedBooks = [...books].sort((a, b) => b.currentlyReading - a.currentlyReading);
+        setBooks(sortedBooks);
+    };
+    const sortByHighestRating = () => {
+        const sortedBooks = [...books].sort((a, b) => b.averageRating - a.averageRating);
+        setBooks(sortedBooks);
+    };
+
+    const handleSort = (sortType) => {
+        switch(sortType) {
+            case 'mostRead':
+                sortByMostRead();
+                break;
+            case 'mostWanted':
+                sortByMostWanted();
+                break;
+            case 'highestRating':
+                sortByHighestRating();
+                break;
+            case 'currentReading':
+                sortByCurrentlyReading();
+                break;
+            case 'name':
+                sortByName();
+                break;
+            default:
+                break;
+        }
+    };
+
     return (
         <section>
-            <FilterBar books={books} />
+            <FilterBar onSort={handleSort} />
             <div className="mt-10 flex flex-wrap gap-10">
             {books.map(book => (
                 book.id !== undefined &&
