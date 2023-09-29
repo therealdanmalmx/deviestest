@@ -6,21 +6,26 @@ export const getStaticPaths = async () => {
     const response = await deviesFetch.get("/books");
     const books = response.data;
 
-    const paths = books.filter(book => (book.id === undefined ? book.id = uuidv4() : book.id)).map((book) => ({
-        params: { bookId: book.id.toString()
-        },
-    }));
+    if (!books || !Array.isArray(books)) {
+        return { paths: [], fallback: false };
+    }
+
+    const paths = books
+        .filter(book => book && book.id) // filter out invalid books
+        .map(book => ({
+            params: { bookId: book.id.toString() }
+        }));
 
     return {
         paths,
-        fallback: false
+        fallback: false // Consider setting this to 'blocking' or true if book IDs are dynamic
     };
 };
 
 export const getStaticProps = async ({params}) => {
     const { bookId }  = params;
     const response = await deviesFetch.get(`/books/${bookId}`);
-    const book = response.data;
+    const book = await response.data;
 
     return {
         props: { book }

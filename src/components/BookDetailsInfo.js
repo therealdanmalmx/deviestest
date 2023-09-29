@@ -9,6 +9,7 @@ const BookDetailsInfo = ({ book }) => {
     const { name, genre, coverUrl, description, averageRating, haveRead, currentlyReading, wantToRead } = book;
     // const {isLoggedIn, checkLogin} = useContext(BookContext);
     const isLoggedIn = true
+    const bookGenre = book.genre || 'Other'
 
   return (
     <div className="flex items-center w-screen justify-center h-screen">
@@ -23,7 +24,7 @@ const BookDetailsInfo = ({ book }) => {
                 className='h-full'
             />
             <div>
-              <span className="relative bottom-12 left-8 bg-gray-700 rounded-full px-3 py-1 text-sm font-semibold text-white">{`#${genre}`}</span>
+              <span className="relative bottom-12 left-8 bg-gray-700 rounded-full px-3 py-1 text-sm font-semibold text-white">{`#${bookGenre}`}</span>
             </div>
         </div>
           <div className="flex flex-col justify-between">
