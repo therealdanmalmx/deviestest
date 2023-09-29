@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
 
 function App() {
   const [inputValue, setInputValue] = useState('');
-  const router = useRouter();
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
@@ -12,7 +10,7 @@ function App() {
   const storeInput = () => {
     try {
       localStorage.setItem('myInput', inputValue);
-        router.push('/');
+        window.location.href = '/';
       console.log(`Stored myInput with value ${inputValue} in local storage.`);
     } catch (error) {
       console.error('Could not store the input in local storage.', error);

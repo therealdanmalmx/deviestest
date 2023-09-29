@@ -11,7 +11,7 @@ const BookProvider = ({ children }) => {
       try {
         const response = await deviesFetch.get('/is-logged-in', {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('myInput')}`
+                Authorization: `Bearer ${localStorage.getItem ? localStorage.getItem('myInput') : undefined}`
             }
         });
         if (response.data === 'Yes') {
