@@ -8,7 +8,7 @@ const Landing = () => {
 
     const [books, setBooks] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
-    const [filteredRanking, setFilteredRanking] = useState([]); // new state for filtered books
+    const [selectedGenre, setSelectedGenre] = useState("");
 
     useEffect( () => {
       const fetchBooks = async () => {
@@ -43,7 +43,11 @@ const Landing = () => {
     };
 
     const sortByName = (query) => {
-        setSearchQuery(query);
+        setSearchQuery(query.toLowerCase());
+    };
+
+    const filterGenres = (genre) => {
+        setSelectedGenre(genre || undefined);
     };
     const handleSort = (sortType) => {
         switch(sortType) {
@@ -62,21 +66,36 @@ const Landing = () => {
             case 'name':
                 sortByName();
                 break;
+            case 'genres':
+                filterGenres();
+                break;
             default:
                 break;
         }
     };
 
+    books.map((book) => {
+        book.genre === undefined ? book.genre = 'Other' : book.genre;
+    });
+
     return (
         <section>
-            <FilterBar onSort={handleSort} onSearch={sortByName} books={books}/>
+
+            <FilterBar onSort={handleSort} onSearch={sortByName} onGenreChange={filterGenres} genres={selectedGenre} books={books}/>
             <div className="mt-10 flex flex-wrap gap-10">
-            {books.filter(book => book.name.toLowerCase().includes(searchQuery.toLowerCase())).map(book => (
-                book.id !== undefined &&
-                (<div key={book.id}>
-                    <BookCard bookInformation={book} />
-                </div>)
-                ))}
+                {books
+                    .filter(book =>
+                        (selectedGenre
+                        ? (book.genre || 'Other') === selectedGenre
+                        : true)
+                        && book.name.toLowerCase().includes(searchQuery.toLowerCase()))
+                    .map(book =>
+                        book.id !== undefined &&
+                        (<div key={book.id}>
+                        <BookCard bookInformation={book} />
+                        </div>)
+                    )
+                }
             </div>
         </section>
     )
