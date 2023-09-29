@@ -6,9 +6,9 @@ import { BookContext } from '@/context/Contexts';
 
 const BookDetailsInfo = ({ book }) => {
 
-    const { name, genre, coverUrl, description, averageRating, haveRead, currentlyReading, wantToRead } = book;
-    // const {isLoggedIn, checkLogin} = useContext(BookContext);
-    const isLoggedIn = true
+    const { name, genre, coverUrl, description } = book;
+    const { isLoggedIn } = useContext(BookContext);
+    // const isLoggedIn = true
     const bookGenre = book.genre || 'Other'
 
   return (
